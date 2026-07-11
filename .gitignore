@@ -1,0 +1,15 @@
+# Backend (.NET)
+bin/
+obj/
+*.db
+*.db-shm
+*.db-wal
+
+# Frontend (React/Node)
+node_modules/
+dist/
+
+# Editor
+.vs/
+.vscode/*
+!.vscode/extensions.json
