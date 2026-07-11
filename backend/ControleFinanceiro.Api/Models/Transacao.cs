@@ -9,7 +9,7 @@ namespace ControleFinanceiro.Api.Models
 
         public decimal Valor { get; set; }
 
-        // "Despesa" ou "Receita" — validado no Controller
+        // "Despesa" ou "Receita". Validado no Controller
         public string Tipo { get; set; } = string.Empty;
 
         public int PessoaId { get; set; }
