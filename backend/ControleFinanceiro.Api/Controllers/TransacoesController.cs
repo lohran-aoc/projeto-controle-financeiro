@@ -45,8 +45,8 @@ namespace ControleFinanceiro.Api.Controllers
 
             return CreatedAtAction(nameof(ListarTransacoes), new { id = transacao.Id }, transacao);
         }
-        
-                // GET: api/transacoes/totais
+
+        // GET: api/transacoes/totais
         [HttpGet("totais")]
         public async Task<ActionResult<IEnumerable<object>>> ConsultarTotais()
         {
