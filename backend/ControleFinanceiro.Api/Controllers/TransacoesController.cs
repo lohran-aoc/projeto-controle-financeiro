@@ -45,5 +45,33 @@ namespace ControleFinanceiro.Api.Controllers
 
             return CreatedAtAction(nameof(ListarTransacoes), new { id = transacao.Id }, transacao);
         }
+        
+                // GET: api/transacoes/totais
+        [HttpGet("totais")]
+        public async Task<ActionResult<IEnumerable<object>>> ConsultarTotais()
+        {
+            var pessoas = await _context.Pessoas
+                .Include(p => p.Transacoes)
+                .ToListAsync();
+
+            var totais = pessoas.Select(p => new
+            {
+                PessoaId = p.Id,
+                Nome = p.Nome,
+                TotalReceitas = p.Transacoes!.Where(t => t.Tipo == "Receita").Sum(t => t.Valor),
+                TotalDespesas = p.Transacoes!.Where(t => t.Tipo == "Despesa").Sum(t => t.Valor),
+                Saldo = p.Transacoes!.Where(t => t.Tipo == "Receita").Sum(t => t.Valor)
+                    - p.Transacoes!.Where(t => t.Tipo == "Despesa").Sum(t => t.Valor)
+            });
+
+            var totalGeral = new
+            {
+                TotalReceitas = totais.Sum(t => t.TotalReceitas),
+                TotalDespesas = totais.Sum(t => t.TotalDespesas),
+                Saldo = totais.Sum(t => t.Saldo)
+            };
+
+            return Ok(new { Pessoas = totais, TotalGeral = totalGeral });
+        }
     }
 }
