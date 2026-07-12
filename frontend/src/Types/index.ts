@@ -1,5 +1,3 @@
-// types/index.ts
-
 export type Pessoa = {
   id: number;
   nome: string;
@@ -12,4 +10,23 @@ export type Transacao = {
   valor: number;
   tipo: "Despesa" | "Receita";
   pessoaId: number;
+};
+
+export type TotalPorPessoa = {
+  pessoaId: number;
+  nome: string;
+  totalReceitas: number;
+  totalDespesas: number;
+  saldo: number;
+};
+
+export type TotalGeral = {
+  totalReceitas: number;
+  totalDespesas: number;
+  saldo: number;
+};
+
+export type ResultadoTotais = {
+  pessoas: TotalPorPessoa[];
+  totalGeral: TotalGeral;
 };
