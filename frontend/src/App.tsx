@@ -1,3 +1,4 @@
+import "./App.css"
 import { useState, useEffect } from "react";
 import type { Pessoa, Transacao, ResultadoTotais } from "./types";
 import {
@@ -65,7 +66,7 @@ function App() {
     evento.preventDefault();
     setErroTransacao("");
 
-    const resposta = await fetch("http://localhost:5068/api/transacoes", {
+    const resposta = await fetch("http://localhost:5138/api/transacoes", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
@@ -96,7 +97,7 @@ function App() {
     : [];
 
   return (
-    <div>
+    <div className="container">
       <h1>Controle de Gastos Residenciais</h1>
 
       <section>
