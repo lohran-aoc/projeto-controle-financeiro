@@ -1,4 +1,3 @@
-import "./App.css"
 import { useState, useEffect } from "react";
 import type { Pessoa, Transacao, ResultadoTotais } from "./types";
 import {
@@ -8,8 +7,10 @@ import {
   listarTransacoes,
   consultarTotais,
 } from "./services/api";
+import "./App.css";
 
 function App() {
+  
   const [pessoas, setPessoas] = useState<Pessoa[]>([]);
   const [nome, setNome] = useState("");
   const [idade, setIdade] = useState("");
