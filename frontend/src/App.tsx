@@ -6,6 +6,7 @@ import {
   deletarPessoa,
   listarTransacoes,
   consultarTotais,
+  criarTransacao,
 } from "./services/api";
 import "./App.css";
 
@@ -66,24 +67,13 @@ function App() {
   async function handleCriarTransacao(evento: React.FormEvent) {
     evento.preventDefault();
     setErroTransacao("");
-
-    const resposta = await fetch("http://localhost:5138/api/transacoes", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        descricao,
-        valor: Number(valor),
-        tipo,
-        pessoaId: Number(pessoaSelecionadaId),
-      }),
-    });
-
-    if (!resposta.ok) {
-      const mensagem = await resposta.text();
-      setErroTransacao(mensagem);
+    try {
+      await criarTransacao({descricao, valor: Number(valor), tipo, pessoaId: Number(pessoaSelecionadaId)});
+    } catch (erro) {
+      const resposta = erro as Error
+      setErroTransacao(resposta.message);
       return;
     }
-
     setDescricao("");
     setValor("");
     setPessoaSelecionadaId("");
