@@ -3,7 +3,8 @@
   margin: 0 auto;
   padding: 2rem 1rem;
   font-family: system-ui, -apple-system, sans-serif;
-  color: #eceaea;
+  color: #1a1a1a;
+  background-color: #ffffff;
 }
 
 h1 {
@@ -36,7 +37,7 @@ select {
   padding: 0.5rem;
   border: 1px solid #ccc;
   border-radius: 4px;
-  font-size: 0.9rem;
+  font-size: 0.7rem;
   flex: 1;
   min-width: 100px;
 }
@@ -81,4 +82,26 @@ li button {
 li button:hover {
   background: #c0392b;
   color: white;
+}
+
+@media (prefers-color-scheme: dark) {
+  .container {
+    color: #f0f0f0;
+    background-color: #1a1a1a;
+  }
+
+  section h2 {
+    border-bottom-color: #444;
+  }
+
+  input,
+  select {
+    background-color: #2a2a2a;
+    color: #f0f0f0;
+    border-color: #555;
+  }
+
+  li {
+    border-bottom-color: #333;
+  }
 }
