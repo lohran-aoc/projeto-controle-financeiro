@@ -31,6 +31,12 @@ export async function criarTransacao(transacao: Omit<Transacao, "id">): Promise<
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(transacao),
   });
+
+  if (!resposta.ok) {
+    const mensagem = await resposta.text();
+    throw new Error(mensagem);
+  }
+
   return resposta.json();
 }
 
